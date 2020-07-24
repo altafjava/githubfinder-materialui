@@ -1,11 +1,13 @@
-import React, { Fragment } from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
+import React from 'react';
+import theme from '../components/ui/Theme';
 import Main from './Main';
 
 const Container = () => {
   return (
-    <Fragment>
-      <Main></Main>
-    </Fragment>
+    <ThemeProvider theme={theme}>
+      <Main />
+    </ThemeProvider>
   );
 };
 

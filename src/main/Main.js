@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Header from '../components/layout/Header';
 
 const Main = () => {
-  return <div>Main</div>;
+  return (
+    <Fragment>
+      <Header />
+    </Fragment>
+  );
 };
 
 export default Main;
