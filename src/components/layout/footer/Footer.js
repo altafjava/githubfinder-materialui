@@ -9,7 +9,7 @@ import FaSocialIcon from './FaSocialIcon';
 const styles = makeStyles((theme) => ({
   footer: {
     color: theme.palette.common.white,
-    backgroundColor: theme.palette.common.black23,
+    backgroundColor: theme.palette.common.black25,
   },
   gridMainItem: {
     ...theme.shape.gridMainItem,
@@ -30,8 +30,10 @@ const styles = makeStyles((theme) => ({
   footerContentData: {
     ...theme.typography.footerContentData,
     lineHeight: 1.5,
-    // Recommended to use % not px
     maxWidth: '320px',
+  },
+  dividerColor: {
+    backgroundColor: theme.palette.common.black20,
   },
 }));
 
@@ -123,7 +125,7 @@ const Footer = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider classes={{ root: classes.dividerColor }} />
         {/* Signup Item */}
         <Grid item className={classes.gridMainItem}>
           <Grid container justify='center' spacing={2} alignItems='center'>
@@ -137,7 +139,7 @@ const Footer = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider classes={{ root: classes.dividerColor }} />
         {/* Social Icon Item */}
         <FaSocialIcon />
         {/* Copyright Item */}
