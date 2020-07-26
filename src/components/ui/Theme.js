@@ -53,7 +53,8 @@ export default createMuiTheme({
   },
   shape: {
     gridMainItem: {
-      padding: '2em',
+      paddingTop: '2em',
+      paddingBottom: '2em',
     },
   },
 });

@@ -1,7 +1,7 @@
-import { Button, Divider, Grid, Typography } from '@material-ui/core';
+import { Button, Divider, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import { makeStyles, useTheme } from '@material-ui/styles';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // import MuiSocialIcon from './MuiSocialIcon';
 import FaSocialIcon from './FaSocialIcon';
@@ -30,7 +30,6 @@ const styles = makeStyles((theme) => ({
   footerContentData: {
     ...theme.typography.footerContentData,
     lineHeight: 1.5,
-    maxWidth: '320px',
   },
   dividerColor: {
     backgroundColor: theme.palette.common.black20,
@@ -40,91 +39,118 @@ const styles = makeStyles((theme) => ({
 const Footer = () => {
   const theme = useTheme();
   const classes = styles();
+  const isScreenBiggerThanSm = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const linksItem = (
+    <Fragment>
+      {/* Links Item1*/}
+      <Grid item>
+        <Grid container direction='column' spacing={1}>
+          <Grid item>
+            <Typography variant='h6'>LINKS</Typography>
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link1
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link2
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link3
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link4
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* Links Item2*/}
+      <Grid item>
+        <Grid container direction='column' spacing={1}>
+          <Grid item>
+            <Typography variant='h6'>LINKS</Typography>
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link1
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link2
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link3
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link4
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* Links Item3*/}
+      <Grid item>
+        <Grid container direction='column' spacing={1}>
+          <Grid item>
+            <Typography variant='h6'>LINKS</Typography>
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link1
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link2
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link3
+          </Grid>
+          <Grid item component={RouterLink} to='#' className={classes.link}>
+            Link4
+          </Grid>
+        </Grid>
+      </Grid>
+    </Fragment>
+  );
+  const footerItem = (
+    <Fragment>
+      <Grid item sm={4} xs={10}>
+        <Grid container direction='column' spacing={1}>
+          <Grid item>
+            <Typography variant='h6'>FOOTER CONTENT</Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant='body2' className={classes.footerContentData}>
+              Here you can use rows and columns to organize your footer content. Here you can use rows and columns to organize your footer content.
+              Here you can use rows and columns to organize your footer content.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Fragment>
+  );
+  const footerContentAndLinksForDesktop = (
+    <Grid item className={classes.gridMainItem}>
+      <Grid container justify='space-evenly'>
+        {footerItem}
+        {linksItem}
+      </Grid>
+    </Grid>
+  );
+  const footerContentAndLinksForMobile = (
+    <Fragment>
+      <Grid item className={classes.gridMainItem}>
+        <Grid container justify='space-evenly'>
+          {footerItem}
+        </Grid>
+      </Grid>
+      <Divider classes={{ root: classes.dividerColor }} />
+      <Grid item className={classes.gridMainItem}>
+        <Grid container justify='space-evenly'>
+          {linksItem}
+        </Grid>
+      </Grid>
+    </Fragment>
+  );
 
   return (
     <footer className={classes.footer}>
       <Grid container direction='column' className={classes.gridContainer}>
-        {/* Footer Content & Links Main Item*/}
-        <Grid item className={classes.gridMainItem}>
-          {/* Footer Content & Links Main Container*/}
-          <Grid container justify='space-evenly' alignItems='flex-start'>
-            {/* Footer Content Item*/}
-            <Grid item>
-              {/* Footer Content Container*/}
-              <Grid container direction='column' spacing={1}>
-                <Grid item>
-                  <Typography variant='h6'>FOOTER CONTENT</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant='body2' className={classes.footerContentData}>
-                    Here you can use rows and columns to organize your footer content. Here you can use rows and columns to organize your footer
-                    content. Here you can use rows and columns to organize your footer content.
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
-            {/* Links Item1*/}
-            <Grid item>
-              <Grid container direction='column' spacing={1}>
-                <Grid item>
-                  <Typography variant='h6'>LINKS</Typography>
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link1
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link2
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link3
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link4
-                </Grid>
-              </Grid>
-            </Grid>
-            {/* Links Item2*/}
-            <Grid item>
-              <Grid container direction='column' spacing={1}>
-                <Grid item>
-                  <Typography variant='h6'>LINKS</Typography>
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link1
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link2
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link3
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link4
-                </Grid>
-              </Grid>
-            </Grid>
-            {/* Links Item3*/}
-            <Grid item>
-              <Grid container direction='column' spacing={1}>
-                <Grid item>
-                  <Typography variant='h6'>LINKS</Typography>
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link1
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link2
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link3
-                </Grid>
-                <Grid item component={RouterLink} to='#' className={classes.link}>
-                  Link4
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+        {/* Footer Content & Links */}
+        {isScreenBiggerThanSm ? footerContentAndLinksForDesktop : footerContentAndLinksForMobile}
         <Divider classes={{ root: classes.dividerColor }} />
         {/* Signup Item */}
         <Grid item className={classes.gridMainItem}>
