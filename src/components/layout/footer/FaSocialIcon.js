@@ -38,50 +38,55 @@ const styles = makeStyles((theme) => ({
 
 const FaSocialIcon = () => {
   const classes = styles();
+
   return (
-    <Grid item className={[classes.gridMainItem, classes.socialIconContainer].join(' ')}>
-      <Grid container justify='center' spacing={3} alignItems='center'>
-        <Grid item>
-          <Link href='https://www.facebook.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-            <div className={[classes.socialIcon, classes.facebookColor].join(' ')}>
-              <i className='fab fa-facebook-f' style={{ fontSize: '1.3rem' }} />
-            </div>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href='https://www.instagram.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-            <div className={[classes.socialIcon, classes.instagramColorCode].join(' ')}>
-              <i className='fab fa-instagram' style={{ fontSize: '1.3rem' }} />
-            </div>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href='https://myaccount.google.com/profile' color='inherit' target='_blank' rel='noopener noreferrer'>
-            <div className={[classes.socialIcon, classes.googlePlusColor].join(' ')}>
-              <i className='fab fa-google-plus-g' style={{ fontSize: '1.3rem' }} />
-            </div>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href='https://www.youtube.com' color='inherit' target='_blank' rel='noopener noreferrer'>
-            <div className={[classes.socialIcon, classes.youtubeColor].join(' ')}>
-              <i className='fab fa-youtube' style={{ fontSize: '1.3rem' }} />
-            </div>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href='https://www.linkedin.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-            <div className={[classes.socialIcon, classes.linkedInColor].join(' ')}>
-              <i className='fab fa-linkedin-in' style={{ fontSize: '1.3rem' }} />
-            </div>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href='https://twitter.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-            <div className={[classes.socialIcon, classes.twitterColor].join(' ')}>
-              <i className='fab fa-twitter' style={{ fontSize: '1.3rem' }} />
-            </div>
-          </Link>
+    <Grid item>
+      <Grid container justify='center'>
+        <Grid item xs={10} className={[classes.gridMainItem, classes.socialIconContainer].join(' ')}>
+          <Grid container justify='center' spacing={4} alignItems='center'>
+            <Grid item>
+              <Link href='https://www.facebook.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <div className={[classes.socialIcon, classes.facebookColor].join(' ')}>
+                  <i className='fab fa-facebook-f' style={{ fontSize: '1.3rem' }} />
+                </div>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href='https://www.instagram.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <div className={[classes.socialIcon, classes.instagramColorCode].join(' ')}>
+                  <i className='fab fa-instagram' style={{ fontSize: '1.3rem' }} />
+                </div>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href='https://myaccount.google.com/profile' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <div className={[classes.socialIcon, classes.googlePlusColor].join(' ')}>
+                  <i className='fab fa-google-plus-g' style={{ fontSize: '1.3rem' }} />
+                </div>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href='https://www.youtube.com' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <div className={[classes.socialIcon, classes.youtubeColor].join(' ')}>
+                  <i className='fab fa-youtube' style={{ fontSize: '1.3rem' }} />
+                </div>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href='https://www.linkedin.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <div className={[classes.socialIcon, classes.linkedInColor].join(' ')}>
+                  <i className='fab fa-linkedin-in' style={{ fontSize: '1.3rem' }} />
+                </div>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href='https://twitter.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <div className={[classes.socialIcon, classes.twitterColor].join(' ')}>
+                  <i className='fab fa-twitter' style={{ fontSize: '1.3rem' }} />
+                </div>
+              </Link>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

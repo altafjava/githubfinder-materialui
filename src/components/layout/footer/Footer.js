@@ -3,8 +3,8 @@ import Link from '@material-ui/core/Link';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import React, { Fragment } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-// import MuiSocialIcon from './MuiSocialIcon';
 import FaSocialIcon from './FaSocialIcon';
+import MuiSocialIcon from './MuiSocialIcon';
 
 const styles = makeStyles((theme) => ({
   footer: {
@@ -145,14 +145,9 @@ const Footer = () => {
       </Grid>
     </Fragment>
   );
-
-  return (
-    <footer className={classes.footer}>
-      <Grid container direction='column' className={classes.gridContainer}>
-        {/* Footer Content & Links */}
-        {isScreenBiggerThanSm ? footerContentAndLinksForDesktop : footerContentAndLinksForMobile}
-        <Divider classes={{ root: classes.dividerColor }} />
-        {/* Signup Item */}
+  const signupItem = (
+    <Grid item>
+      <Grid container justify='center'>
         <Grid item className={classes.gridMainItem}>
           <Grid container justify='center' spacing={2} alignItems='center'>
             <Grid item>
@@ -165,20 +160,36 @@ const Footer = () => {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
+    </Grid>
+  );
+  const copyrightItem = (
+    <Grid item className={[classes.gridMainItem, classes.copyrightContainer].join(' ')}>
+      <Grid container justify='center' alignItems='center'>
+        <Grid item>
+          © 2020 Copyright :
+          <Link to='/' className={classes.link} style={{ marginLeft: '2pt', color: theme.palette.common.darkPink }}>
+            Github Finder
+          </Link>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+  return (
+    <footer className={classes.footer}>
+      <Grid container direction='column'>
+        {/* Footer Content & Links */}
+        {isScreenBiggerThanSm ? footerContentAndLinksForDesktop : footerContentAndLinksForMobile}
+        <Divider classes={{ root: classes.dividerColor }} />
+        {/* Signup Item */}
+        {signupItem}
         <Divider classes={{ root: classes.dividerColor }} />
         {/* Social Icon Item */}
+        <MuiSocialIcon />
+        <Divider classes={{ root: classes.dividerColor }} />
         <FaSocialIcon />
         {/* Copyright Item */}
-        <Grid item className={[classes.gridMainItem, classes.copyrightContainer].join(' ')}>
-          <Grid container justify='center' alignItems='center'>
-            <Grid item>
-              © 2020 Copyright :
-              <Link to='/' className={classes.link} style={{ marginLeft: '2pt', color: theme.palette.common.darkPink }}>
-                Github Finder
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
+        {copyrightItem}
       </Grid>
     </footer>
   );
