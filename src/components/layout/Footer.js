@@ -1,8 +1,9 @@
 import { Button, Divider, Grid, Typography } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
 import { Facebook, Instagram, LinkedIn, Twitter, YouTube } from '@material-ui/icons/';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 const styles = makeStyles((theme) => ({
   footer: {
@@ -65,16 +66,16 @@ const Footer = () => {
                 <Grid item>
                   <Typography variant='h6'>LINKS</Typography>
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link1
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link2
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link3
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link4
                 </Grid>
               </Grid>
@@ -85,16 +86,16 @@ const Footer = () => {
                 <Grid item>
                   <Typography variant='h6'>LINKS</Typography>
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link1
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link2
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link3
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link4
                 </Grid>
               </Grid>
@@ -105,16 +106,16 @@ const Footer = () => {
                 <Grid item>
                   <Typography variant='h6'>LINKS</Typography>
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link1
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link2
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link3
                 </Grid>
-                <Grid item component={Link} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='/' className={classes.link}>
                   Link4
                 </Grid>
               </Grid>
@@ -140,19 +141,29 @@ const Footer = () => {
           {/* Social Icon Container */}
           <Grid container justify='center' spacing={3}>
             <Grid item>
-              <Facebook fontSize='large' />
+              <Link href='https://www.facebook.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <Facebook fontSize='large' />
+              </Link>
             </Grid>
             <Grid item>
-              <Twitter fontSize='large' />
+              <Link href='https://twitter.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <Twitter fontSize='large' />
+              </Link>
             </Grid>
             <Grid item>
-              <YouTube fontSize='large' />
+              <Link href='https://www.youtube.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <YouTube fontSize='large' />
+              </Link>
             </Grid>
             <Grid item>
-              <LinkedIn fontSize='large' />
+              <Link href='https://www.linkedin.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <LinkedIn fontSize='large' />
+              </Link>
             </Grid>
             <Grid item>
-              <Instagram fontSize='large' />
+              <Link href='https://www.instagram.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
+                <Instagram fontSize='large' />
+              </Link>
             </Grid>
           </Grid>
         </Grid>
