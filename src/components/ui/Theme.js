@@ -14,11 +14,11 @@ export default createMuiTheme({
       green: '#28a745',
       teal: '#20c997',
       cyan: '#17a2b8',
+      gray: '#6c757d',
       white: '#ffffff',
       black: '#000000',
-      gray: '#6c757d',
-      darkGray: '#343a40',
-      darkBlueGray: '#3e4551',
+      black23: '#343a40',
+      black15: '#1f292e',
       success: '#28a745',
       info: '#17a2b8',
       warning: '#ffc107',
@@ -48,6 +48,11 @@ export default createMuiTheme({
     button: {
       fontSize: '0.9rem',
       fontWeight: 300,
+    },
+  },
+  shape: {
+    gridMainItem: {
+      padding: '2em',
     },
   },
 });

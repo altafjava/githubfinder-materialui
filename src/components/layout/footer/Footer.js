@@ -1,21 +1,22 @@
 import { Button, Divider, Grid, Typography } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
-import { Facebook, Instagram, LinkedIn, Twitter, YouTube } from '@material-ui/icons/';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+// import MuiSocialIcon from './MuiSocialIcon';
+import FaSocialIcon from './FaSocialIcon';
 
 const styles = makeStyles((theme) => ({
   footer: {
     color: theme.palette.common.white,
-    backgroundColor: theme.palette.common.darkBlueGray,
+    backgroundColor: theme.palette.common.black23,
   },
   gridMainItem: {
-    padding: '2em',
+    ...theme.shape.gridMainItem,
   },
   copyrightContainer: {
     ...theme.typography.copyrightContainer,
-    backgroundColor: theme.palette.common.darkGray,
+    backgroundColor: theme.palette.common.black15,
   },
   link: {
     ...theme.typography.link,
@@ -54,8 +55,8 @@ const Footer = () => {
                 </Grid>
                 <Grid item>
                   <Typography variant='body2' className={classes.footerContentData}>
-                    Here you can use rows and columns to organize your footer content. Here you can use rows and columns to organize your footer content. Here you can use rows and columns to organize
-                    your footer content.
+                    Here you can use rows and columns to organize your footer content. Here you can use rows and columns to organize your footer
+                    content. Here you can use rows and columns to organize your footer content.
                   </Typography>
                 </Grid>
               </Grid>
@@ -66,16 +67,16 @@ const Footer = () => {
                 <Grid item>
                   <Typography variant='h6'>LINKS</Typography>
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link1
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link2
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link3
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link4
                 </Grid>
               </Grid>
@@ -86,16 +87,16 @@ const Footer = () => {
                 <Grid item>
                   <Typography variant='h6'>LINKS</Typography>
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link1
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link2
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link3
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link4
                 </Grid>
               </Grid>
@@ -106,16 +107,16 @@ const Footer = () => {
                 <Grid item>
                   <Typography variant='h6'>LINKS</Typography>
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link1
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link2
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link3
                 </Grid>
-                <Grid item component={RouterLink} to='/' className={classes.link}>
+                <Grid item component={RouterLink} to='#' className={classes.link}>
                   Link4
                 </Grid>
               </Grid>
@@ -123,6 +124,7 @@ const Footer = () => {
           </Grid>
         </Grid>
         <Divider />
+        {/* Signup Item */}
         <Grid item className={classes.gridMainItem}>
           <Grid container justify='center' spacing={2} alignItems='center'>
             <Grid item>
@@ -137,36 +139,7 @@ const Footer = () => {
         </Grid>
         <Divider />
         {/* Social Icon Item */}
-        <Grid item className={classes.gridMainItem}>
-          {/* Social Icon Container */}
-          <Grid container justify='center' spacing={3}>
-            <Grid item>
-              <Link href='https://www.facebook.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-                <Facebook fontSize='large' />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='https://twitter.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-                <Twitter fontSize='large' />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='https://www.youtube.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-                <YouTube fontSize='large' />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='https://www.linkedin.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-                <LinkedIn fontSize='large' />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='https://www.instagram.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
-                <Instagram fontSize='large' />
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
+        <FaSocialIcon />
         {/* Copyright Item */}
         <Grid item className={[classes.gridMainItem, classes.copyrightContainer].join(' ')}>
           <Grid container justify='center' alignItems='center'>
