@@ -52,7 +52,7 @@ export default createMuiTheme({
     },
   },
   shape: {
-    gridMainItem: {
+    footerGridItem: {
       paddingTop: '2em',
       paddingBottom: '2em',
     },

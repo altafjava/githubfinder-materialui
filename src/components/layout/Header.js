@@ -1,10 +1,4 @@
-import {
-  ListItemText,
-  SwipeableDrawer,
-  Tab,
-  Tabs,
-  useMediaQuery,
-} from '@material-ui/core';
+import { ListItemText, SwipeableDrawer, Tab, Tabs, useMediaQuery } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
@@ -53,7 +47,13 @@ const useStyles = makeStyles((theme) => ({
   list: {
     color: theme.palette.common.white,
   },
-  toolbarMargin: {
+  homeMargin: {
+    marginBottom: '4.8em',
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '4em',
+    },
+  },
+  drawerMenuMargin: {
     marginBottom: '3em',
   },
   appBar: {
@@ -67,19 +67,14 @@ const Header = () => {
   const [tabValue, setTabValue] = useState(0);
   const [listItemSelectedIndex, setListItemSelectedIndex] = useState(0);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const isScreenForDesktop = useMediaQuery(theme.breakpoints.up('sm'));
 
   const onTabChange = (e, newValue) => {
     setTabValue(newValue);
   };
 
   const tabs = (
-    <Tabs
-      value={tabValue}
-      onChange={onTabChange}
-      aria-label='simple tabs example'
-      className={classes.tabs}
-    >
+    <Tabs value={tabValue} onChange={onTabChange} aria-label='simple tabs example' className={classes.tabs}>
       <Tab label='Home' className={classes.tab} />
       <Tab label='About Us' className={classes.tab} />
       <Tab label='Contact Us' className={classes.tab} />
@@ -96,7 +91,7 @@ const Header = () => {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.swipeableDrawer }}
       >
-        <div className={classes.toolbarMargin} />
+        <div className={classes.drawerMenuMargin} />
         <List className={classes.list}>
           <ListItem
             onClick={() => {
@@ -133,10 +128,7 @@ const Header = () => {
           </ListItem>
         </List>
       </SwipeableDrawer>
-      <IconButton
-        onClick={() => setOpenDrawer(!openDrawer)}
-        className={classes.iconButton}
-      >
+      <IconButton onClick={() => setOpenDrawer(!openDrawer)} className={classes.iconButton}>
         <MenuIcon className={classes.menuIcon}></MenuIcon>
       </IconButton>
     </Fragment>
@@ -150,10 +142,11 @@ const Header = () => {
             <Typography variant='h6' style={{ paddingLeft: '0.5rem' }}>
               Github Finder
             </Typography>
-            {matches ? tabs : drawer}
+            {isScreenForDesktop ? tabs : drawer}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
+      <div className={classes.homeMargin} />
     </React.Fragment>
   );
 };

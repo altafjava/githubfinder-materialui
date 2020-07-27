@@ -12,7 +12,7 @@ const styles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.black25,
   },
   gridMainItem: {
-    ...theme.shape.gridMainItem,
+    ...theme.shape.footerGridItem,
   },
   copyrightContainer: {
     ...theme.typography.copyrightContainer,

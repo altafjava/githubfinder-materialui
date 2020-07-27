@@ -4,14 +4,14 @@ import { makeStyles } from '@material-ui/styles';
 import React, { Fragment } from 'react';
 
 const styles = makeStyles((theme) => ({
-  gridMainItem: {
-    ...theme.shape.gridMainItem,
+  gridItem: {
+    ...theme.shape.footerGridItem,
   },
-  gridMainItemForSocialIconUpper: {
+  gridItemForSocialIconUpper: {
     paddingTop: '2em',
     paddingBottom: '1em',
   },
-  gridMainItemForSocialIconLower: {
+  gridItemForSocialIconLower: {
     paddingTop: '1em',
     paddingBottom: '2em',
   },
@@ -103,7 +103,7 @@ const FaSocialIcon = () => {
     </Grid>
   );
   const iconsForDesktop = (
-    <Grid item className={[classes.gridMainItem, classes.socialIconContainer].join(' ')}>
+    <Grid item className={[classes.gridItem, classes.socialIconContainer].join(' ')}>
       <Grid container justify='center' spacing={4} alignItems='center'>
         {facebookItem}
         {instagramItem}
@@ -118,14 +118,14 @@ const FaSocialIcon = () => {
     <Fragment>
       <Grid item>
         <Grid container direction='column'>
-          <Grid item className={[classes.gridMainItemForSocialIconUpper, classes.socialIconContainer].join(' ')}>
+          <Grid item className={[classes.gridItemForSocialIconUpper, classes.socialIconContainer].join(' ')}>
             <Grid container justify='center' spacing={4} alignItems='center'>
               {facebookItem}
               {instagramItem}
               {googlePlusItem}
             </Grid>
           </Grid>
-          <Grid item className={[classes.gridMainItemForSocialIconLower, classes.socialIconContainer].join(' ')}>
+          <Grid item className={[classes.gridItemForSocialIconLower, classes.socialIconContainer].join(' ')}>
             <Grid container justify='center' spacing={4} alignItems='center'>
               {youtubeItem}
               {linkedInItem}

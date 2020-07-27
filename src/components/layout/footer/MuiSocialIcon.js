@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/styles';
 import { Facebook, Instagram, LinkedIn, Twitter, YouTube } from '@material-ui/icons/';
 
 const styles = makeStyles((theme) => ({
-  gridMainItem: {
-    ...theme.shape.gridMainItem,
+  gridItem: {
+    ...theme.shape.footerGridItem,
   },
 }));
 
@@ -15,7 +15,7 @@ const MuiSocialIcon = () => {
   return (
     <Grid item>
       <Grid container justify='center'>
-        <Grid item className={classes.gridMainItem}>
+        <Grid item className={classes.gridItem}>
           <Grid container justify='center' spacing={3}>
             <Grid item>
               <Link href='https://www.facebook.com/' color='inherit' target='_blank' rel='noopener noreferrer'>
