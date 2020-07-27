@@ -7,7 +7,9 @@ export default createMuiTheme({
       indigo: '#6610f2',
       purple: '#6f42c1',
       pink: '#e83e8c',
-      darkPink: '#dc004e',
+      pink40: '#cc0047',
+      pink45: '#e60050',
+      pink50: '#ff0059',
       red: '#dc3545',
       orange: '#fd7e14',
       yellow: '#ffc107',
@@ -55,6 +57,16 @@ export default createMuiTheme({
     footerGridItem: {
       paddingTop: '2em',
       paddingBottom: '2em',
+    },
+    icon: {
+      verticalAlign: 'top',
+    },
+    badge: {
+      display: 'inline-block',
+      padding: '0.8rem',
+      textAlign: 'center',
+      borderRadius: 5,
+      color: 'white',
     },
   },
 });

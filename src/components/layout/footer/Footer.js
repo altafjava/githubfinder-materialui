@@ -114,8 +114,8 @@ const Footer = () => {
           </Grid>
           <Grid item>
             <Typography variant='body2' className={classes.footerContentData}>
-              Here you can use rows and columns to organize your footer content. Here you can use rows and columns to organize your footer content.
-              Here you can use rows and columns to organize your footer content.
+              Here you can use rows and columns to organize your footer content. Here you can use rows and columns to organize your footer
+              content. Here you can use rows and columns to organize your footer content.
             </Typography>
           </Grid>
         </Grid>
@@ -168,7 +168,7 @@ const Footer = () => {
       <Grid container justify='center' alignItems='center'>
         <Grid item>
           © 2020 Copyright :
-          <Link to='/' className={classes.link} style={{ marginLeft: '2pt', color: theme.palette.common.darkPink }}>
+          <Link to='/' className={classes.link} style={{ marginLeft: '2pt', color: theme.palette.common.pink45 }}>
             Github Finder
           </Link>
         </Grid>

@@ -1,4 +1,4 @@
-import { Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import React from 'react';
@@ -20,6 +20,7 @@ const styles = makeStyles((theme) => ({
     backgroundColor: 'black',
     color: 'white',
     padding: '0.3rem 1rem',
+    textDecoration: 'none',
   },
 }));
 const UserItem = (props) => {
@@ -30,7 +31,7 @@ const UserItem = (props) => {
       <CardContent className={classes.cardContent}>
         <img alt='avatar' src={avatar_url} className={classes.img} />
         <h3>{login}</h3>
-        <Link to={`/user/${login}`} className={classes.link} style={{ textDecoration: 'none' }}>
+        <Link to={`/user/${login}`} className={classes.link}>
           More
         </Link>
       </CardContent>

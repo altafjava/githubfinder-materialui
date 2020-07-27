@@ -22,7 +22,7 @@ const Users = () => {
     Axios.get('https://api.github.com/users').then((response) => {
       setUsers(response.data);
     });
-  });
+  }, []);
 
   return (
     <div className={classes.root}>
