@@ -25,6 +25,7 @@ export default createMuiTheme({
       success: '#28a745',
       info: '#17a2b8',
       warning: '#ffc107',
+      warning35: '#b38600',
       danger: '#dc3545',
       light: '#f8f9fa',
     },
