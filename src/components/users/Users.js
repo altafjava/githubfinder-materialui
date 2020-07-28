@@ -1,6 +1,5 @@
 import { GridList, GridListTile, makeStyles } from '@material-ui/core';
-import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import UserItem from './UserItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,15 +11,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Users = () => {
+const Users = ({ users }) => {
   const classes = useStyles();
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    Axios.get('https://api.github.com/users').then((response) => {
-      setUsers(response.data);
-    });
-  }, []);
 
   return (
     <div className={classes.divDisplayFlex}>

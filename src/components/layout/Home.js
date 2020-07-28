@@ -1,7 +1,8 @@
-import { Button, Grid, makeStyles } from '@material-ui/core';
+import { CircularProgress, Button, Grid, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Users from '../users/Users';
+import Axios from 'axios';
 
 const styles = makeStyles((theme) => ({
   textField: {
@@ -11,12 +12,23 @@ const styles = makeStyles((theme) => ({
 const Home = () => {
   const classes = styles();
   const [inputText, setInputText] = useState('');
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    Axios.get('https://api.github.com/users').then((response) => {
+      setLoading(false);
+      setUsers(response.data);
+    });
+  }, []);
 
   const handleButtonClick = () => {
-    console.log('button clicked', inputText);
-    // Axios.get(`https://api.github.com/search/users?q=${inputText}`).then((response) => {
-    //   setUsers(response.data.items);
-    // });
+    setLoading(true);
+    Axios.get(`https://api.github.com/search/users?q=${inputText}`).then((response) => {
+      setLoading(false);
+      setUsers(response.data.items);
+    });
   };
   const onTextChange = (e) => {
     setInputText(e.target.value);
@@ -43,9 +55,7 @@ const Home = () => {
                 Search
               </Button>
             </Grid>
-            <Grid item>
-              <Users />
-            </Grid>
+            <Grid item>{loading ? <CircularProgress /> : <Users users={users} />}</Grid>
           </Grid>
         </Grid>
       </Grid>

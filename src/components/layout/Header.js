@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   homeMargin: {
-    marginBottom: '4.8em',
+    marginBottom: '6em',
     [theme.breakpoints.down('xs')]: {
       marginBottom: '4em',
     },
