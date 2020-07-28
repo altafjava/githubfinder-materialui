@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, makeStyles, Typography, Button } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, GridList, GridListTile, makeStyles, Typography } from '@material-ui/core';
 import { ArrowBack, Cancel, CheckCircle } from '@material-ui/icons';
 import Axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -31,8 +31,7 @@ const styles = makeStyles((theme) => ({
     ...theme.shape.icon,
   },
   card: {
-    minWidth: 1200,
-    alignItems: 'center',
+    ...theme.shape.card,
   },
   img: {
     width: '180px',
@@ -58,12 +57,18 @@ const styles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.orange,
   },
 }));
+
 const User = ({ match }) => {
   const classes = styles();
   const [user, setUser] = useState({});
+  const [repos, setRepos] = useState([]);
+
   useEffect(() => {
     Axios.get(`https://api.github.com/users/${match.params.login}`).then((response) => {
       setUser(response.data);
+    });
+    Axios.get(`https://api.github.com/users/${match.params.login}/repos`).then((response) => {
+      setRepos(response.data);
     });
     //eslint-disable-next-line
   }, []);
@@ -206,10 +211,29 @@ const User = ({ match }) => {
               </Card>
             </Grid>
             <Grid item>
+              <Grid container justify='flex-start' direction='row'>
+                <Grid item>
+                  <Typography variant='h6' color='secondary'>
+                    Latest Repositories
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item>
               <Card className={classes.card} variant='outlined'>
                 <CardContent>
-                  <Grid container spacing={2} justify='center'>
-                    <Grid item></Grid>
+                  <Grid container justify='center'>
+                    <Grid item>
+                      <GridList cols={3} cellHeight={40}>
+                        {repos.map((repo) => (
+                          <GridListTile key={repo.id} cols={1}>
+                            <a href={repo.html_url} target='_blank' rel='noopener noreferrer' className={classes.a}>
+                              {repo.name}
+                            </a>
+                          </GridListTile>
+                        ))}
+                      </GridList>
+                    </Grid>
                   </Grid>
                 </CardContent>
               </Card>

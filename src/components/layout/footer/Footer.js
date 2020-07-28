@@ -8,6 +8,7 @@ import MuiSocialIcon from './MuiSocialIcon';
 
 const styles = makeStyles((theme) => ({
   footer: {
+    marginTop:'4em',
     color: theme.palette.common.white,
     backgroundColor: theme.palette.common.black25,
   },

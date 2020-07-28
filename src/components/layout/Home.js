@@ -5,7 +5,7 @@ import Users from '../users/Users';
 
 const styles = makeStyles((theme) => ({
   textField: {
-    width: 600,
+    width: 1200,
   },
 }));
 const Home = () => {

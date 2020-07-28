@@ -4,13 +4,11 @@ import React, { useEffect, useState } from 'react';
 import UserItem from './UserItem';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-end',
+  divDisplayFlex: {
+    ...theme.shape.divDisplayFlex,
   },
-  gridList: {
-    width: 1200,
+  gridListWidth: {
+    ...theme.shape.gridListWidth,
   },
 }));
 
@@ -25,8 +23,8 @@ const Users = () => {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <GridList spacing={15} cols={4} cellHeight={320} className={classes.gridList}>
+    <div className={classes.divDisplayFlex}>
+      <GridList spacing={15} cols={4} cellHeight={320} className={classes.gridListWidth}>
         {users.map((user) => (
           <GridListTile key={user.id} cols={1}>
             <UserItem user={user} />

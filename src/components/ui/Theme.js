@@ -68,5 +68,18 @@ export default createMuiTheme({
       borderRadius: 5,
       color: 'white',
     },
+    divDisplayFlex: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'flex-end',
+    },
+    gridListWidth: {
+      width: 1200,
+    },
+    card: {
+      minWidth: 1200,
+      maxWidth: 1200,
+      alignItems: 'center',
+    },
   },
 });
