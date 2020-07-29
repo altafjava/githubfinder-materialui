@@ -11,6 +11,7 @@ import GithubIcon from '@material-ui/icons/GitHub';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -37,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'transparent',
     },
   },
+  githubIcon: {
+    ...theme.shape.icon,
+    width: 40,
+    height: 40,
+  },
   menuIcon: {
     width: '30px',
     height: '30px',
@@ -48,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   homeMargin: {
-    marginBottom: '6em',
+    marginBottom: '8em',
     [theme.breakpoints.down('xs')]: {
       marginBottom: '4em',
     },
@@ -58,6 +64,13 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.modal + 1,
+  },
+  toolbar: {
+    minHeight: 80,
+  },
+  a: {
+    textDecoration: 'none',
+    color: 'white',
   },
 }));
 const Header = () => {
@@ -137,11 +150,13 @@ const Header = () => {
     <React.Fragment>
       <ElevationScroll>
         <AppBar className={classes.appBar}>
-          <Toolbar>
-            <GithubIcon />
-            <Typography variant='h6' style={{ paddingLeft: '0.5rem' }}>
-              Github Finder
-            </Typography>
+          <Toolbar className={classes.toolbar}>
+            <Link to='/' className={classes.a}>
+              <GithubIcon className={classes.githubIcon} />
+              <Typography variant='h4' style={{ paddingLeft: '0.5rem' }} display='inline'>
+                Github Finder
+              </Typography>
+            </Link>
             {isScreenForDesktop ? tabs : drawer}
           </Toolbar>
         </AppBar>
