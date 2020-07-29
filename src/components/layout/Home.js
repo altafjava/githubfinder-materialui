@@ -2,9 +2,8 @@ import { Button, CircularProgress, Grid, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
-import SomethingWentWrong from '../error/SomethingWentWrong';
-import Users from '../users/Users';
 import Alert from '../error/Alert';
+import Users from '../users/Users';
 
 const styles = makeStyles((theme) => ({
   textField: {
@@ -20,12 +19,13 @@ const styles = makeStyles((theme) => ({
     marginRight: '0.4em',
   },
 }));
+
 const Home = () => {
   const classes = styles();
   const [inputText, setInputText] = useState('');
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
@@ -35,13 +35,21 @@ const Home = () => {
         setLoading(false);
         setUsers(response.data);
       })
-      .catch(() => {
-        setError(true);
+      .catch((error) => {
+        if (!error.response) {
+          showSomethingWentWrong('Please check your Internet Connection');
+        } else {
+          showSomethingWentWrong('Something went wrong');
+        }
       });
   }, []);
 
-  const handleButtonClick = (e) => {
-    setError(false);
+  const handleClearButtonClick = () => {
+    setUsers([]);
+  };
+  const handleSearchButtonClick = () => {
+    setError(null);
+    setAlert(false);
     setLoading(true);
     if (inputText === '') {
       setLoading(false);
@@ -52,21 +60,29 @@ const Home = () => {
           setLoading(false);
           setUsers(response.data.items);
         })
-        .catch(() => {
-          setError(true);
+        .catch((error) => {
+          if (!error.response) {
+            showSomethingWentWrong('Please check your Internet Connection');
+          } else {
+            showSomethingWentWrong('Something went wrong');
+          }
         });
     }
   };
-  const onTextChange = (e) => {
-    setInputText(e.target.value);
-  };
+  const onTextChange = (e) => setInputText(e.target.value);
+
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') handleButtonClick();
+    if (e.key === 'Enter') handleSearchButtonClick();
   };
 
   const showAlert = () => {
     setAlert(true);
     setTimeout(() => setAlert(false), 5000);
+  };
+  const showSomethingWentWrong = (message) => {
+    setLoading(false);
+    setError(message);
+    setTimeout(() => setError(null), 5000);
   };
   return (
     <Fragment>
@@ -84,18 +100,30 @@ const Home = () => {
             </Grid>
             {alert === true && (
               <Grid item>
-                <Alert />
+                <Alert message='Please Enter Something' />
               </Grid>
             )}
             <Grid item>
-              <Button variant='contained' color='primary' size='large' onClick={handleButtonClick} style={{ marginRight: '2em' }}>
+              <Button variant='contained' color='primary' size='large' onClick={handleSearchButtonClick} style={{ marginRight: '2em' }}>
                 Search
               </Button>
-              <Button variant='contained' color='secondary' size='large' onClick={handleButtonClick} style={{ marginLeft: '2em' }}>
+              <Button variant='contained' color='secondary' size='large' onClick={handleClearButtonClick} style={{ marginLeft: '2em' }}>
                 Clear
               </Button>
             </Grid>
-            <Grid item>{error ? <SomethingWentWrong /> : loading ? <CircularProgress size={100} /> : <Users users={users} />}</Grid>
+            {error ? (
+              <Grid item>
+                <Alert message={error} />
+              </Grid>
+            ) : loading ? (
+              <Grid item>
+                <CircularProgress size={100} />
+              </Grid>
+            ) : (
+              <Grid item>
+                <Users users={users} />
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </Grid>

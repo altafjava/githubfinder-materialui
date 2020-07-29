@@ -14,13 +14,13 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-const Alert = () => {
+const Alert = ({ message }) => {
   const classes = styles();
   return (
     <div className={classes.warningBadge}>
       <WarningIcon className={classes.warningIcon} />
       <Typography display='inline' variant='body1'>
-        Please enter something
+        {message}
       </Typography>
     </div>
   );
