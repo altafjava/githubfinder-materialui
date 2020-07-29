@@ -75,7 +75,7 @@ export default createMuiTheme({
       justifyContent: 'flex-end',
     },
     gridListWidth: {
-      width: 1200,
+      width: 1600,
     },
     card: {
       minWidth: 1200,

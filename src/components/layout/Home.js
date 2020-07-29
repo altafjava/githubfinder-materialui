@@ -4,10 +4,11 @@ import Axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import SomethingWentWrong from '../error/SomethingWentWrong';
 import Users from '../users/Users';
+import Alert from '../error/Alert';
 
 const styles = makeStyles((theme) => ({
   textField: {
-    width: 1200,
+    width: 1000,
   },
   warningBadge: {
     ...theme.shape.badge,
@@ -25,6 +26,7 @@ const Home = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -38,17 +40,22 @@ const Home = () => {
       });
   }, []);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
     setError(false);
     setLoading(true);
-    Axios.get(`https://api.github.com/search/users?q=${inputText}`)
-      .then((response) => {
-        setLoading(false);
-        setUsers(response.data.items);
-      })
-      .catch(() => {
-        setError(true);
-      });
+    if (inputText === '') {
+      setLoading(false);
+      showAlert();
+    } else {
+      Axios.get(`https://api.github.com/search/users?q=${inputText}`)
+        .then((response) => {
+          setLoading(false);
+          setUsers(response.data.items);
+        })
+        .catch(() => {
+          setError(true);
+        });
+    }
   };
   const onTextChange = (e) => {
     setInputText(e.target.value);
@@ -57,6 +64,10 @@ const Home = () => {
     if (e.key === 'Enter') handleButtonClick();
   };
 
+  const showAlert = () => {
+    setAlert(true);
+    setTimeout(() => setAlert(false), 5000);
+  };
   return (
     <Fragment>
       <Grid container justify='center'>
@@ -71,6 +82,11 @@ const Home = () => {
                 onKeyPress={handleKeyPress}
               />
             </Grid>
+            {alert === true && (
+              <Grid item>
+                <Alert />
+              </Grid>
+            )}
             <Grid item>
               <Button variant='contained' color='primary' size='large' onClick={handleButtonClick} style={{ marginRight: '2em' }}>
                 Search

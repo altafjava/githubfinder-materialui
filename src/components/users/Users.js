@@ -16,7 +16,7 @@ const Users = ({ users }) => {
 
   return (
     <div className={classes.divDisplayFlex}>
-      <GridList spacing={15} cols={4} cellHeight={320} className={classes.gridListWidth}>
+      <GridList spacing={15} cols={5} cellHeight={320} className={classes.gridListWidth}>
         {users.map((user) => (
           <GridListTile key={user.id} cols={1}>
             <UserItem user={user} />
