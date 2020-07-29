@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Grid, makeStyles } from '@material-ui/core';
+import { Button, CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -119,10 +119,23 @@ const Home = () => {
               <Grid item>
                 <CircularProgress size={100} />
               </Grid>
-            ) : (
+            ) : users.length > 0 ? (
               <Grid item>
                 <Users users={users} />
               </Grid>
+            ) : (
+              <Fragment>
+                <Grid item>
+                  <Grid container direction='column' alignItems='center' spacing={2}>
+                    <Grid item>
+                      <img src='assets/no-record-found.svg' alt='No Record Found' />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant='h6'>No Record Found</Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Fragment>
             )}
           </Grid>
         </Grid>
