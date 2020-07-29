@@ -87,10 +87,10 @@ const Header = () => {
   };
 
   const tabs = (
-    <Tabs value={tabValue} onChange={onTabChange} aria-label='simple tabs example' className={classes.tabs}>
-      <Tab label='Home' className={classes.tab} />
-      <Tab label='About Us' className={classes.tab} />
-      <Tab label='Contact Us' className={classes.tab} />
+    <Tabs value={tabValue} onChange={onTabChange} className={classes.tabs}>
+      <Tab label='Home' className={classes.tab} component={Link} to='/' />
+      <Tab label='About Us' className={classes.tab} component={Link} to='/about' />
+      <Tab label='Contact Us' className={classes.tab} component={Link} to='/contact' />
     </Tabs>
   );
 

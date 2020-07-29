@@ -55,7 +55,7 @@ export default createMuiTheme({
     },
     tab: {
       fontFamily: 'Roboto',
-      fontSize: '1.2rem',
+      fontSize: '1rem',
       fontWeight: 500,
     },
   },
