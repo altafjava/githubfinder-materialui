@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     ...theme.typography.tab,
-    minWidth: 100,
+    minWidth: 150,
   },
   iconButton: {
     marginLeft: 'auto',

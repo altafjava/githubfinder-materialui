@@ -53,6 +53,11 @@ export default createMuiTheme({
       fontSize: '0.9rem',
       fontWeight: 300,
     },
+    tab: {
+      fontFamily: 'Roboto',
+      fontSize: '1.2rem',
+      fontWeight: 500,
+    },
   },
   shape: {
     footerGridItem: {
