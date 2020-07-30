@@ -1,8 +1,9 @@
-import { Button, CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, CircularProgress, Grid, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import Alert from '../error/Alert';
+import NoRecordFound from '../error/NoRecordFound';
 import Users from '../users/Users';
 
 const styles = makeStyles((theme) => ({
@@ -15,7 +16,7 @@ const styles = makeStyles((theme) => ({
       width: window.innerWidth - 80,
     },
     [theme.breakpoints.down('xs')]: {
-      width: window.innerWidth - 40,
+      width: window.innerWidth - 20,
     },
   },
   warningBadge: {
@@ -36,6 +37,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [alert, setAlert] = useState(false);
+  const [recordNotFound, setRecordNotFound] = useState(false);
 
   let spacing = 0;
   const currentWindowWidth = window.innerWidth;
@@ -67,6 +69,7 @@ const Home = () => {
     setUsers([]);
   };
   const handleSearchButtonClick = () => {
+    setRecordNotFound(false);
     setError(null);
     setAlert(false);
     setLoading(true);
@@ -76,6 +79,7 @@ const Home = () => {
     } else {
       Axios.get(`https://api.github.com/search/users?q=${inputText}`)
         .then((response) => {
+          if (response.data.items.length === 0) setRecordNotFound(true);
           setLoading(false);
           setUsers(response.data.items);
         })
@@ -140,135 +144,18 @@ const Home = () => {
               <Grid item>
                 <CircularProgress size={100} />
               </Grid>
-            ) : users.length > 0 ? (
+            ) : recordNotFound ? (
+              <NoRecordFound />
+            ) : (
               <Grid item>
                 <Users users={users} />
               </Grid>
-            ) : (
-              <Fragment>
-                <Grid item>
-                  <Grid container direction='column' alignItems='center' spacing={2}>
-                    <Grid item>
-                      <img src='assets/no-record-found.svg' alt='No Record Found' />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant='h6'>No Record Found</Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Fragment>
             )}
           </Grid>
         </Grid>
       </Grid>
     </Fragment>
   );
-
-  // const homeForDesktop = (
-  //   <Grid container justify='center' direction='column' alignItems='center' spacing={9}>
-  //     <Grid item>
-  //       <TextField
-  //         variant='outlined'
-  //         placeholder='Search User...'
-  //         className={classes.textField}
-  //         onChange={onTextChange}
-  //         onKeyPress={handleKeyPress}
-  //       />
-  //     </Grid>
-  //     {alert === true && (
-  //       <Grid item>
-  //         <Alert message='Please Enter Something' />
-  //       </Grid>
-  //     )}
-  //     <Grid item>
-  //       <Button variant='contained' color='primary' size='large' onClick={handleSearchButtonClick} style={{ marginRight: '2em' }}>
-  //         Search
-  //       </Button>
-  //       <Button variant='contained' color='secondary' size='large' onClick={handleClearButtonClick} style={{ marginLeft: '2em' }}>
-  //         Clear
-  //       </Button>
-  //     </Grid>
-  //     {error ? (
-  //       <Grid item>
-  //         <Alert message={error} />
-  //       </Grid>
-  //     ) : loading ? (
-  //       <Grid item>
-  //         <CircularProgress size={100} />
-  //       </Grid>
-  //     ) : users.length > 0 ? (
-  //       <Grid item>
-  //         <Users users={users} />
-  //       </Grid>
-  //     ) : (
-  //       <Fragment>
-  //         <Grid item>
-  //           <Grid container direction='column' alignItems='center' spacing={2}>
-  //             <Grid item>
-  //               <img src='assets/no-record-found.svg' alt='No Record Found' />
-  //             </Grid>
-  //             <Grid item>
-  //               <Typography variant='h6'>No Record Found</Typography>
-  //             </Grid>
-  //           </Grid>
-  //         </Grid>
-  //       </Fragment>
-  //     )}
-  //   </Grid>
-  // );
-
-  // const homeForMobile = (
-  //   <Grid container justify='center' direction='column' alignItems='center' spacing={3}>
-  //     <Grid item>
-  //       <TextField
-  //         variant='outlined'
-  //         placeholder='Search User...'
-  //         className={classes.textField}
-  //         onChange={onTextChange}
-  //         onKeyPress={handleKeyPress}
-  //       />
-  //     </Grid>
-  //     {alert === true && (
-  //       <Grid item>
-  //         <Alert message='Please Enter Something' />
-  //       </Grid>
-  //     )}
-  //     <Grid item>
-  //       <Button variant='contained' color='primary' size='large' onClick={handleSearchButtonClick} style={{ marginRight: '1em' }}>
-  //         Search
-  //       </Button>
-  //       <Button variant='contained' color='secondary' size='large' onClick={handleClearButtonClick} style={{ marginLeft: '1em' }}>
-  //         Clear
-  //       </Button>
-  //     </Grid>
-  //     {error ? (
-  //       <Grid item>
-  //         <Alert message={error} />
-  //       </Grid>
-  //     ) : loading ? (
-  //       <Grid item>
-  //         <CircularProgress />
-  //       </Grid>
-  //     ) : users.length > 0 ? (
-  //       <Grid item>
-  //         <Users users={users} />
-  //       </Grid>
-  //     ) : (
-  //       <Fragment>
-  //         <Grid item>
-  //           <Grid container direction='column' alignItems='center' spacing={2}>
-  //             <Grid item>
-  //               <img src='assets/no-record-found.svg' alt='No Record Found' />
-  //             </Grid>
-  //             <Grid item>
-  //               <Typography variant='h6'>No Record Found</Typography>
-  //             </Grid>
-  //           </Grid>
-  //         </Grid>
-  //       </Fragment>
-  //     )}
-  //   </Grid>
-  // );
 };
 
 export default Home;
