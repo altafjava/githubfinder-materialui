@@ -31,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     ...theme.typography.tab,
     minWidth: 150,
+    [theme.breakpoints.down('md')]: {
+      minWidth: 120,
+      fontSize: '0.9rem',
+      fontWeight: 400,
+    },
     [theme.breakpoints.down('sm')]: {
       minWidth: 100,
       fontSize: '0.8rem',
@@ -92,6 +97,15 @@ const Header = () => {
   const [tabValue, setTabValue] = useState(0);
   const [listItemSelectedIndex, setListItemSelectedIndex] = useState(0);
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  let variant = 'h4';
+  const currentWindowWidth = window.innerWidth;
+  const [md, lg] = [960, 1280];
+  if (currentWindowWidth < md) {
+    variant = 'h6';
+  } else if (currentWindowWidth < lg) {
+    variant = 'h5';
+  }
   const isScreenForDesktop = useMediaQuery(theme.breakpoints.up('sm'));
 
   const onTabChange = (e, newValue) => {
@@ -165,15 +179,9 @@ const Header = () => {
           <Toolbar className={classes.toolbar}>
             <Link to='/' className={classes.a}>
               <GithubIcon className={classes.githubIcon} />
-              {isScreenForDesktop ? (
-                <Typography variant='h6' style={{ paddingLeft: '0.5rem' }} display='inline'>
-                  Github Finder
-                </Typography>
-              ) : (
-                <Typography variant='h6' style={{ paddingLeft: '0.5rem' }} display='inline'>
-                  Github Finder
-                </Typography>
-              )}
+              <Typography variant={variant} style={{ paddingLeft: '0.5rem' }} display='inline'>
+                Github Finder
+              </Typography>
             </Link>
             {isScreenForDesktop ? tabs : drawer}
           </Toolbar>
