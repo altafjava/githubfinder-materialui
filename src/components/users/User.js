@@ -33,6 +33,18 @@ const styles = makeStyles((theme) => ({
   },
   card: {
     ...theme.shape.card,
+    [theme.breakpoints.down('md')]: {
+      minWidth: window.innerWidth - 60,
+      maxWidth: window.innerWidth - 60,
+    },
+    [theme.breakpoints.down('sm')]: {
+      minWidth: window.innerWidth - 40,
+      maxWidth: window.innerWidth - 40,
+    },
+    [theme.breakpoints.down('xs')]: {
+      minWidth: window.innerWidth - 20,
+      maxWidth: window.innerWidth - 20,
+    },
   },
   img: {
     width: '180px',
@@ -66,6 +78,28 @@ const User = ({ match }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  let spinnerSize = 90;
+  let spacing = 10;
+  let cols = 4;
+  let cellHeight = 40;
+  const currentWindowWidth = window.innerWidth;
+  const [sm, md, lg] = [600, 960, 1280];
+  if (currentWindowWidth < sm) {
+    spinnerSize = 40;
+    spacing = 4;
+    cols = 1;
+    cellHeight = 20;
+  } else if (currentWindowWidth < md) {
+    spinnerSize = 60;
+    spacing = 6;
+    cols = 2;
+    cellHeight = 25;
+  } else if (currentWindowWidth < lg) {
+    spinnerSize = 76;
+    spacing = 8;
+    cols = 3;
+    cellHeight = 30;
+  }
   useEffect(() => {
     setLoading(true);
     Axios.get(`https://api.github.com/users/${match.params.login}`)
@@ -138,20 +172,22 @@ const User = ({ match }) => {
             {error != null ? (
               <Alert message={error} />
             ) : loading ? (
-              <CircularProgress size={100} />
+              <CircularProgress size={spinnerSize} />
             ) : (
               <Fragment>
                 <Grid item>
                   <Card className={classes.card} variant='outlined'>
                     <CardContent>
-                      <Grid container justify='center' spacing={10}>
-                        <Grid item xs={6}>
+                      <Grid container justify='center' spacing={spacing}>
+                        <Grid item xs={currentWindowWidth > md ? 6 : 12}>
                           <Grid container justify='center' direction='column' spacing={1} alignItems='center'>
                             <Grid item>
                               <img src={avatar_url} alt='avatar' className={classes.img} />
                             </Grid>
                             <Grid item>
-                              <Typography variant='h4'>{name}</Typography>
+                              <Typography variant='h4' display='inline'>
+                                {name}
+                              </Typography>
                             </Grid>
                             <Grid item>
                               <Typography display='inline' variant='body1'>
@@ -161,12 +197,16 @@ const User = ({ match }) => {
                             </Grid>
                           </Grid>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={currentWindowWidth > md ? 6 : 12}>
                           <Grid container justify='center' direction='column' spacing={1} alignItems='flex-start'>
                             {bio && (
                               <Grid item>
-                                <Typography variant='h6'>Bio</Typography>
-                                {bio}
+                                <Typography variant='h6' align='center'>
+                                  Bio
+                                </Typography>
+                                <Typography variant='body1' align='justify'>
+                                  {bio}
+                                </Typography>
                               </Grid>
                             )}
                             <Grid item>
@@ -259,7 +299,7 @@ const User = ({ match }) => {
                     <CardContent>
                       <Grid container justify='center'>
                         <Grid item>
-                          <GridList cols={3} cellHeight={40}>
+                          <GridList cols={cols} cellHeight={cellHeight}>
                             {repos.map((repo) => (
                               <GridListTile key={repo.id} cols={1}>
                                 <a href={repo.html_url} target='_blank' rel='noopener noreferrer' className={classes.a}>

@@ -59,7 +59,6 @@ const Users = ({ users }) => {
   } else {
     cols = cols > 5 ? 5 : cols;
   }
-  console.log(currentWindowWidth, '  divider=', divider, '  quo=', quotient, '  rem=', remainder, '  cols=', cols);
 
   return (
     <div className={classes.divDisplayFlex}>
