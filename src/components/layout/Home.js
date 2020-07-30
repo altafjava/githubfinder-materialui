@@ -7,7 +7,16 @@ import Users from '../users/Users';
 
 const styles = makeStyles((theme) => ({
   textField: {
-    width: 1000,
+    width: window.innerWidth - 200,
+    [theme.breakpoints.down('md')]: {
+      width: window.innerWidth - 120,
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: window.innerWidth - 80,
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: window.innerWidth - 40,
+    },
   },
   warningBadge: {
     ...theme.shape.badge,
@@ -28,6 +37,16 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [alert, setAlert] = useState(false);
 
+  let spacing = 0;
+  const currentWindowWidth = window.innerWidth;
+  const [sm, md] = [600, 960, 1280];
+  if (currentWindowWidth < sm) {
+    spacing = 3;
+  } else if (currentWindowWidth < md) {
+    spacing = 6;
+  } else {
+    spacing = 9;
+  }
   useEffect(() => {
     setLoading(true);
     Axios.get('https://api.github.com/users')
@@ -84,11 +103,13 @@ const Home = () => {
     setError(message);
     setTimeout(() => setError(null), 5000);
   };
+
   return (
     <Fragment>
       <Grid container justify='center'>
         <Grid item>
-          <Grid container justify='center' direction='column' alignItems='center' spacing={9}>
+          {/* {isScreenForDesktop ? homeForDesktop : homeForMobile} */}
+          <Grid container justify='center' direction='column' alignItems='center' spacing={spacing}>
             <Grid item>
               <TextField
                 variant='outlined'
@@ -142,6 +163,112 @@ const Home = () => {
       </Grid>
     </Fragment>
   );
+
+  // const homeForDesktop = (
+  //   <Grid container justify='center' direction='column' alignItems='center' spacing={9}>
+  //     <Grid item>
+  //       <TextField
+  //         variant='outlined'
+  //         placeholder='Search User...'
+  //         className={classes.textField}
+  //         onChange={onTextChange}
+  //         onKeyPress={handleKeyPress}
+  //       />
+  //     </Grid>
+  //     {alert === true && (
+  //       <Grid item>
+  //         <Alert message='Please Enter Something' />
+  //       </Grid>
+  //     )}
+  //     <Grid item>
+  //       <Button variant='contained' color='primary' size='large' onClick={handleSearchButtonClick} style={{ marginRight: '2em' }}>
+  //         Search
+  //       </Button>
+  //       <Button variant='contained' color='secondary' size='large' onClick={handleClearButtonClick} style={{ marginLeft: '2em' }}>
+  //         Clear
+  //       </Button>
+  //     </Grid>
+  //     {error ? (
+  //       <Grid item>
+  //         <Alert message={error} />
+  //       </Grid>
+  //     ) : loading ? (
+  //       <Grid item>
+  //         <CircularProgress size={100} />
+  //       </Grid>
+  //     ) : users.length > 0 ? (
+  //       <Grid item>
+  //         <Users users={users} />
+  //       </Grid>
+  //     ) : (
+  //       <Fragment>
+  //         <Grid item>
+  //           <Grid container direction='column' alignItems='center' spacing={2}>
+  //             <Grid item>
+  //               <img src='assets/no-record-found.svg' alt='No Record Found' />
+  //             </Grid>
+  //             <Grid item>
+  //               <Typography variant='h6'>No Record Found</Typography>
+  //             </Grid>
+  //           </Grid>
+  //         </Grid>
+  //       </Fragment>
+  //     )}
+  //   </Grid>
+  // );
+
+  // const homeForMobile = (
+  //   <Grid container justify='center' direction='column' alignItems='center' spacing={3}>
+  //     <Grid item>
+  //       <TextField
+  //         variant='outlined'
+  //         placeholder='Search User...'
+  //         className={classes.textField}
+  //         onChange={onTextChange}
+  //         onKeyPress={handleKeyPress}
+  //       />
+  //     </Grid>
+  //     {alert === true && (
+  //       <Grid item>
+  //         <Alert message='Please Enter Something' />
+  //       </Grid>
+  //     )}
+  //     <Grid item>
+  //       <Button variant='contained' color='primary' size='large' onClick={handleSearchButtonClick} style={{ marginRight: '1em' }}>
+  //         Search
+  //       </Button>
+  //       <Button variant='contained' color='secondary' size='large' onClick={handleClearButtonClick} style={{ marginLeft: '1em' }}>
+  //         Clear
+  //       </Button>
+  //     </Grid>
+  //     {error ? (
+  //       <Grid item>
+  //         <Alert message={error} />
+  //       </Grid>
+  //     ) : loading ? (
+  //       <Grid item>
+  //         <CircularProgress />
+  //       </Grid>
+  //     ) : users.length > 0 ? (
+  //       <Grid item>
+  //         <Users users={users} />
+  //       </Grid>
+  //     ) : (
+  //       <Fragment>
+  //         <Grid item>
+  //           <Grid container direction='column' alignItems='center' spacing={2}>
+  //             <Grid item>
+  //               <img src='assets/no-record-found.svg' alt='No Record Found' />
+  //             </Grid>
+  //             <Grid item>
+  //               <Typography variant='h6'>No Record Found</Typography>
+  //             </Grid>
+  //           </Grid>
+  //         </Grid>
+  //       </Fragment>
+  //     )}
+  //   </Grid>
+  // );
 };
 
 export default Home;

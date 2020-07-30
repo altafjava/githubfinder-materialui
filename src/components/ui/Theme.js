@@ -80,7 +80,7 @@ export default createMuiTheme({
       justifyContent: 'flex-end',
     },
     gridListWidth: {
-      width: 1600,
+      width: window.innerWidth - 80,
     },
     card: {
       minWidth: 1200,

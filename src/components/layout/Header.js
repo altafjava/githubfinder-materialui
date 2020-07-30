@@ -31,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     ...theme.typography.tab,
     minWidth: 150,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 100,
+      fontSize: '0.8rem',
+      fontWeight: 400,
+    },
   },
   iconButton: {
     marginLeft: 'auto',
@@ -42,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     ...theme.shape.icon,
     width: 40,
     height: 40,
+    [theme.breakpoints.down('sm')]: {
+      width: 30,
+      height: 30,
+    },
   },
   menuIcon: {
     width: '30px',
@@ -56,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   homeMargin: {
     marginBottom: '8em',
     [theme.breakpoints.down('xs')]: {
-      marginBottom: '4em',
+      marginBottom: '5em',
     },
   },
   drawerMenuMargin: {
@@ -67,6 +76,9 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     minHeight: 80,
+    [theme.breakpoints.down('xs')]: {
+      minHeight: 60,
+    },
   },
   a: {
     textDecoration: 'none',
@@ -153,9 +165,15 @@ const Header = () => {
           <Toolbar className={classes.toolbar}>
             <Link to='/' className={classes.a}>
               <GithubIcon className={classes.githubIcon} />
-              <Typography variant='h4' style={{ paddingLeft: '0.5rem' }} display='inline'>
-                Github Finder
-              </Typography>
+              {isScreenForDesktop ? (
+                <Typography variant='h6' style={{ paddingLeft: '0.5rem' }} display='inline'>
+                  Github Finder
+                </Typography>
+              ) : (
+                <Typography variant='h6' style={{ paddingLeft: '0.5rem' }} display='inline'>
+                  Github Finder
+                </Typography>
+              )}
             </Link>
             {isScreenForDesktop ? tabs : drawer}
           </Toolbar>

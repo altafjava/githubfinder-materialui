@@ -8,9 +8,12 @@ import MuiSocialIcon from './MuiSocialIcon';
 
 const styles = makeStyles((theme) => ({
   footer: {
-    marginTop:'4em',
+    marginTop: '4em',
     color: theme.palette.common.white,
     backgroundColor: theme.palette.common.black25,
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '2em',
+    },
   },
   gridMainItem: {
     ...theme.shape.footerGridItem,

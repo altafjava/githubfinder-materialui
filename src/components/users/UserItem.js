@@ -1,16 +1,37 @@
-import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import React from 'react';
 import { makeStyles } from '@material-ui/styles';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const styles = makeStyles((theme) => ({
   card: {
-    minWidth: 275,
+    minWidth: 280,
+    [theme.breakpoints.down('md')]: {
+      minWidth: 220,
+    },
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 220,
+    },
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 160,
+    },
   },
   img: {
-    width: '180px',
+    width: '162px',
     borderRadius: '50%',
+    [theme.breakpoints.down('lg')]: {
+      width: '144px',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '126px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '108px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '72px',
+    },
   },
   cardContent: {
     textAlign: 'center',
