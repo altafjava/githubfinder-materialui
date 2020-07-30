@@ -39,15 +39,19 @@ const Home = () => {
   const [alert, setAlert] = useState(false);
   const [recordNotFound, setRecordNotFound] = useState(false);
 
-  let spacing = 0;
+  let spacing = 9;
+  let spinnerSize = 90;
   const currentWindowWidth = window.innerWidth;
-  const [sm, md] = [600, 960, 1280];
+  const [sm, md, lg] = [600, 960, 1280];
   if (currentWindowWidth < sm) {
+    spinnerSize = 40;
     spacing = 3;
   } else if (currentWindowWidth < md) {
+    spinnerSize = 60;
     spacing = 6;
-  } else {
-    spacing = 9;
+  } else if (currentWindowWidth < lg) {
+    spinnerSize = 76;
+    spacing = 8;
   }
   useEffect(() => {
     setLoading(true);
@@ -142,7 +146,7 @@ const Home = () => {
               </Grid>
             ) : loading ? (
               <Grid item>
-                <CircularProgress size={100} />
+                <CircularProgress size={spinnerSize} />
               </Grid>
             ) : recordNotFound ? (
               <NoRecordFound />
