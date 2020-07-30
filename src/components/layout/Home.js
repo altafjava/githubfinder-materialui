@@ -116,7 +116,6 @@ const Home = () => {
     <Fragment>
       <Grid container justify='center'>
         <Grid item>
-          {/* {isScreenForDesktop ? homeForDesktop : homeForMobile} */}
           <Grid container justify='center' direction='column' alignItems='center' spacing={spacing}>
             <Grid item>
               <TextField

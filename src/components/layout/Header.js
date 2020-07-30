@@ -133,6 +133,8 @@ const Header = () => {
         <div className={classes.drawerMenuMargin} />
         <List className={classes.list}>
           <ListItem
+            component={Link}
+            to='/'
             onClick={() => {
               setOpenDrawer(false);
               setListItemSelectedIndex(0);
@@ -144,6 +146,8 @@ const Header = () => {
             <ListItemText>Home</ListItemText>
           </ListItem>
           <ListItem
+            component={Link}
+            to='/about'
             onClick={() => {
               setOpenDrawer(false);
               setListItemSelectedIndex(1);
@@ -155,6 +159,8 @@ const Header = () => {
             <ListItemText>About Us</ListItemText>
           </ListItem>
           <ListItem
+            component={Link}
+            to='/contact'
             onClick={() => {
               setOpenDrawer(false);
               setListItemSelectedIndex(2);
